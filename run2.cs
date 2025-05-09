@@ -138,10 +138,8 @@ class Program
     static int Solve(List<List<char>> data)
     {
         var maze = new Maze(data);
-        var cts = new CancellationTokenSource();
-        cts.CancelAfter(TimeSpan.FromSeconds(40));
 
-        var solveTask = Task.Run(() => FirstSolveTry(maze), cts.Token);
+        var solveTask = Task.Run(() => FirstSolveTry(maze));
         if (solveTask.Wait(TimeSpan.FromSeconds(40)))
             return solveTask.Result;
 
